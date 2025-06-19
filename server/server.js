@@ -12,9 +12,18 @@ class Server {
     }
 
     middlewares() {
-        this.app.use(cors());
-        this.app.use(express.json({ limit: '10mb' })); // Parsing de JSON con límite
-        this.app.use(express.urlencoded({ extended: true })); // Para form data
+        // ORDEN IMPORTANTE: CORS primero
+        this.app.use(cors({
+            origin: '*', // En producción, especifica los orígenes permitidos
+            methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+            allowedHeaders: ['Content-Type', 'Authorization']
+        }));
+        
+        // Parsing de JSON ANTES del logger
+        this.app.use(express.json({ limit: '10mb' }));
+        this.app.use(express.urlencoded({ extended: true }));
+        
+        // Logger después del parsing
         this.app.use(logger);
     }
     
