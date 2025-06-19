@@ -1,31 +1,30 @@
-// Definicion de las rutas de las Apis
-const services =[
+// Definicion de las rutas de las APIs
+const services = [
     {
-        //Api 1
+        // API 1 - Usuarios
         name: "usuarios",
-        url:  "http://192.168.103.85:3006",
+        url: "https://api-users-citas-medicas-production.up.railway.app",
         path: "/api-usuarios"
     },
     {
-        // Api 2
+        // API 2 - Auth
         name: "auth",
-        url:  "http://192.168.103.126:3007",
+        url: "https://api-2-auth-production.up.railway.app",
         path: "/api-login"
-
     },
     {
-        //API 3
+        // API 3 - Services
         name: "services",
-        url:  "http://192.168.103.188:3008",
+        url: "https://api-3-services-production.up.railway.app",
         path: "/api-services"
     },
     {
-        //API 3
+        // API 4 - Turnos
         name: "turnos",
-        url:  "http://192.168.103.85:3009",
+        url: "https://api-4-turnos-production-92f6.up.railway.app",
         path: "/api-turnos"
     }
+];
 
-]
- // Exportacion del modulo 
-module.exports = {services};
+// Exportacion del modulo 
+module.exports = { services };
