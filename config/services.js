@@ -21,7 +21,7 @@ const services = [
     {
         // API 4 - Turnos
         name: "turnos",
-        url: "https://api-4-turnos-production-92f6.up.railway.app",
+        url: "https://api-4-turnos-production-b5d2.up.railway.app",
         path: "/api-turnos"
     }
 ];
