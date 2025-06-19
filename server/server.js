@@ -13,7 +13,8 @@ class Server {
 
     middlewares() {
         this.app.use(cors());
-        this.app.use(express.json()); // Agregar para parsing de JSON
+        this.app.use(express.json({ limit: '10mb' })); // Parsing de JSON con límite
+        this.app.use(express.urlencoded({ extended: true })); // Para form data
         this.app.use(logger);
     }
     
