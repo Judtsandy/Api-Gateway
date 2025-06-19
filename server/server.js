@@ -1,26 +1,39 @@
 const cors = require("cors");
 const express = require("express");
 const logger = require("../middlewares/logger");
-const gatewatRoutes = require("../routes/gateway.routes")
+const gatewayRoutes = require("../routes/gateway.routes");
 
 class Server {
-    constructor(port){
+    constructor(port) {
         this.app = express();
         this.port = port;
         this.middlewares();
         this.routes();
     }
 
-    middlewares(){
+    middlewares() {
         this.app.use(cors());
+        this.app.use(express.json()); // Agregar para parsing de JSON
         this.app.use(logger);
     }
-    routes(){
-        this.app.use(gatewatRoutes);
+    
+    routes() {
+        // Ruta de salud para Railway
+        this.app.get('/health', (req, res) => {
+            res.status(200).json({ 
+                status: 'OK', 
+                message: 'Gateway is running',
+                timestamp: new Date().toISOString()
+            });
+        });
+        
+        this.app.use(gatewayRoutes);
     }
-    start(){
-        this.app.listen(this.port,()=>
-        console.log("Gateway running in http://192.168.103.181:" + this.port));
+    
+    start() {
+        this.app.listen(this.port, '0.0.0.0', () => {
+            console.log(`Gateway running on port ${this.port}`);
+        });
     }
 }
 
